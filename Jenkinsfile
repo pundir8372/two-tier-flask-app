@@ -23,7 +23,7 @@ pipeline{
         stage("Push to Docker Hub"){
             steps{
                 withCredentials([usernamePassword(
-                    credentialsId:"dockerHubCreds",
+                    credentialsId:"dockerHubCred",
                     passwordVariable: "dockerHubPass",
                     usernameVariable: "dockerHubUser"
                 )]){
@@ -37,7 +37,7 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                sh "docker compose up -d --build flask-app"
+                sh "docker compose down && docker compose  up -d --build flask-app"
             }
         }
     }
