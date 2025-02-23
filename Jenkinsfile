@@ -8,7 +8,7 @@ pipeline {
         stage("Code Clone") {
             steps {
                 script{
-                    code_checkout("https://github.com/pundir8372/two-tier-flask-app.git", "master")
+                    code_checkout(url:"https://github.com/pundir8372/two-tier-flask-app.git", branch:"master")
                 }
                 
             }
@@ -17,7 +17,7 @@ pipeline {
         stage("Build") {
             steps {
                 script{
-                    docker_build("two-tier-flask-app" , "latest")
+                    docker_build(ImageName:"two-tier-flask-app" , ImageTag:"latest")
                 }
                 
             }
@@ -26,7 +26,7 @@ pipeline {
         stage("Push to DockerHub") {
             steps {
                 script{
-                    docker_push("two-tier-flask-app","latest")
+                    docker_push(ImageName:"two-tier-flask-app",ImageTag:"latest")
                 }
                 
                
