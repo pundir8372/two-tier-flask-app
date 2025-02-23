@@ -46,12 +46,12 @@ pipeline {
     post {
         success {
             echo "Pipeline completed successfully!"
-            sendNotification('SUCCESS', 'two-tier-flask-app')
+            sendNotification(buildStatus:'SUCCESS', ProjectName:'two-tier-flask-app')
         }
 
         failure {
             echo "Pipeline failed. Please check the logs."
-            sendNotification('FAILURE', 'two-tier-flask-app')
+            sendNotification(buildStatus:'FAILURE', ProjectName:'two-tier-flask-app')
         }
     }
 }
